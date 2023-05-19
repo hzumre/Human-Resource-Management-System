@@ -1,0 +1,161 @@
+﻿@using IK_Project.Domain.Enums;
+@using IK_Project.UI.Areas.Admin.Models.ViewModels.MenuVMs;
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+@model MenuCreateVM
+
+<html lang="en">
+<style>
+
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+
+    input[type=text], select, textarea {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        margin-top: 6px;
+        margin-bottom: 16px;
+        resize: vertical;
+    }
+
+    input[type=date], select, textarea {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        margin-top: 6px;
+        margin-bottom: 16px;
+        resize: vertical;
+    }
+
+    input[type=email], select, textarea {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        margin-top: 6px;
+        margin-bottom: 16px;
+        resize: vertical;
+    }
+
+    input[type=number], select, textarea {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        margin-top: 6px;
+        margin-bottom: 16px;
+        resize: vertical;
+    }
+
+    input[type=password], select, textarea {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        margin-top: 6px;
+        margin-bottom: 16px;
+        resize: vertical;
+    }
+
+    input[type=submit] {
+        background-color: #04AA6D;
+        color: white;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+        input[type=submit]:hover {
+            background-color: #45a049;
+        }
+</style>
+
+<div class="container-xl px-4 mt-4">
+
+
+    <form enctype="multipart/form-data" method="post" asp-action="Create" asp-area="Admin" asp-controller="Menu">
+
+        <div class="card mb-4 mb-xl-0">
+            <div class="card-header" style="font-size:18px;">Menu Create</div>
+
+            <div class="card-body">
+
+                <div class="mb-3">
+                    <label style="font-size:16px;" class="small mb-1" for="form4Example1">Name:</label>
+                    <input style="font-size:16px;" asp-for="Name" id="form4Example1" type="text" />
+                </div>
+
+
+                <div class="mb-3">
+                    <label style="font-size:16px;" class="small mb-1" for="form4Example1">Period:</label>
+                    <input style="font-size:16px;" asp-for="Period" id="form4Example1" type="number" />
+                </div>
+
+                <div class="mb-3">
+                    <label style="font-size:16px;" class="small mb-1" for="form4Example1">Unit Price:</label>
+                    <input style="font-size:16px;" asp-for="UnitPrice" id="form4Example1" type="number" />
+                </div>
+
+                <div class="mb-3">
+                    <label style="font-size:16px;" asp-for=@Model.ReleaseDate class="small mb-1" for="inputUsername">Release Date:</label>
+                    <input style="font-size:16px;" asp-for=@Model.ReleaseDate id="form4Example2" type="date">
+                    <span asp-validation-for="ReleaseDate" class="text-danger"></span>
+
+                </div>
+
+                <div class="mb-3">
+                    <label style="font-size:16px;" asp-for=@Model.DeletedDate class="small mb-1" for="inputUsername">Deleted Date:</label>
+                    <input style="font-size:16px;" asp-for=@Model.DeletedDate id="form4Example2" type="date">
+                    <span asp-validation-for="DeletedDate" class="text-danger"></span>
+
+                </div>
+
+                <div class="mb-3">
+                    <label style="font-size:16px;" class="small mb-1" for="form4Example1">User Amount:</label>
+                    <input style="font-size:16px;" asp-for="UserAmount" id="form4Example1" type="number" />
+                </div>
+
+                <div class="mb-3">
+                    <label style="font-size:16px;" class="form-label" for="form4Example2">Currecy:</label>
+                    <select style="font-size:16px;" style="height:max-content" asp-for="@Model.Currecy" asp-items="@Html.GetEnumSelectList<CurrecyUnit>()">
+                        <option value="">Choose Currecy..</option>
+                    </select>
+                    <span asp-validation-for="Currecy" class="text-danger"></span>
+
+                </div>
+
+
+                <div class="mb-3">
+                    <label hidden class="form-label" for="inputDateTime">Status:</label>
+                    <input hidden readonly asp-for=@Model.Status class="form-control" id="inputDateTime" type="text" value=@Model.Status>
+                </div>
+
+                <!-- Save changes button-->
+                <button type="submit" class="btn btn-primary float-right">Save Changes</button>
+            </div>
+        </div>
+
+    </form>
+
+</div>
+
+
+</html>
+

@@ -1,0 +1,98 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    //Layout = "~Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .container3 {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        background-color: white;
+        /*        height: 250px;
+             gap: 10px;   */
+    }
+</style>
+
+
+
+<div class="container3">
+
+    @await Component.InvokeAsync("Admin")
+
+</div>
+
+<div class="container3">
+
+
+    <div class="card" style="width: 18rem;">
+        <img src="~/images/work3.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title">Admin transactions</h5>
+            <p class="card-body">Adding Admins are done in this section.</p>
+        </div>
+        <div class="card-footer">
+            <a class="btn btn-block btn-success" style="color:azure; font-size:larger" asp-action="Create" asp-area="Admin" asp-controller="Admin">Click</a>
+    </div>
+    </div>
+
+    <div class="card" style="width: 18rem;">
+        <img src="~/images/work1.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title">Company transactions</h5>
+            <p class="card-body">Adding, deleting, updating and listing companies are done in this section.</p>
+        </div>
+        <div class="card-footer">
+            <a class="btn btn-block btn-primary" style="color:azure; font-size:larger" asp-action="Index" asp-area="Admin" asp-controller="Company">Click</a>
+        </div>
+    </div>
+
+    <div class="card" style="width: 18rem;">
+        <img src="~/images/work2.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title">Company Manager transactions</h5>
+            <p class="card-body">Adding, deleting, updating and listing Company Managers are done in this section. </p>
+        </div>
+        <div class="card-footer">
+            <a class="btn btn-block btn-success" style="color:azure; font-size:larger" asp-action="Index" asp-area="Admin" asp-controller="CompanyManager">Click</a>
+        </div>
+    </div>
+
+    <div class="card" style="width: 18rem;">
+        <img src="~/images/work3.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title">Package transactions</h5>
+            <p class="card-body">Adding, deleting, updating and listing package are done in this section. </p>
+        </div>
+      
+        <div class="card-footer">
+            <a class="btn btn-block btn-info" style="color:azure; font-size:larger" asp-action="Index" asp-area="Admin" asp-controller="Menu">Click</a>
+        </div>
+    </div>
+
+    <div class="card" style="width: 18rem;">
+        <img src="~/images/work4.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title">Role transactions</h5>
+            <p class="card-text">Deleting, updating and listing roles are done in this section. </p>
+        </div>
+        <div class="card-footer">
+            <a class="btn btn-block btn-success" style="color:azure; font-size:larger" asp-action="Index" asp-area="Admin" asp-controller="Role">Click</a>
+        </div>
+    </div>
+    <div class="card" style="width: 18rem;">
+        <img src="~/images/work2.jpg" class="card-img-top" alt="...">
+  <div class="card-body">
+            <h5 class="card-title">User-Role transactions</h5>
+            <p class="card-text">Adding, deleting, updating and listing roles to the user are done here.</p> 
+  </div>
+        <div class="card-footer">
+            <a class="btn btn-block btn-info" style="color:azure; font-size:larger" asp-action="ListUsers" asp-area="Admin" asp-controller="Role">Click</a>
+        </div>
+</div>
+</div>
+
+
+

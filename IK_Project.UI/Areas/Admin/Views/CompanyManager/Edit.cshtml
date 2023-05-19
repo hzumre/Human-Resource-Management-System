@@ -1,0 +1,78 @@
+﻿@using IK_Project.Domain.Enums;
+@using IK_Project.UI.Areas.Admin.Models.ViewModels.CompanyManagerVMs;
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+@model CompanyManagerEditVM
+
+<div class="row">
+    <div class="col-lg-6">
+        <form method="post" asp-action="Edit" asp-area="Admin" asp-controller="CompanyManager">
+
+            <input type="hidden" asp-for="Id" />
+            
+            <!-- Name input -->
+            <div class="form-outline mb-4">
+                <label class="form-label" for="form4Example1">CompanyManager Name</label>
+                <input asp-for="Name" id="form4Example1" class="form-control" />
+            </div>
+
+            <!-- SecondName input -->
+            <div class="form-outline mb-4">
+                <label class="form-label" for="form4Example2">CompanyManager SecondName</label>
+                <input asp-for="SecondName" id="form4Example2" class="form-control" />
+            </div>
+
+            <!-- LastName input -->
+            <div class="form-outline mb-4">
+                <label class="form-label" for="form4Example2">CompanyManager LastName</label>
+                <input asp-for="LastName" id="form4Example2" class="form-control" />
+            </div>
+
+            <!-- SecondLastName input -->
+            <div class="form-outline mb-4">
+                <label class="form-label" for="form4Example2">CompanyManager SecondLastName</label>
+                <input asp-for="SecondLastName" id="form4Example2" class="form-control" />
+            </div>
+
+            <!-- Email input -->
+            <div class="form-outline mb-4">
+                <label class="form-label" for="form4Example2">CompanyManager Email</label>
+                <input asp-for="Email" id="form4Example2" class="form-control" />
+            </div>
+
+            <!-- PhoneNumber input -->
+            <div class="form-outline mb-4">
+                <label class="form-label" for="form4Example2">CompanyManager PhoneNumber</label>
+                <input asp-for="PhoneNumber" id="form4Example2" class="form-control" />
+            </div>
+
+            <!-- Status input -->
+            <div class="form-outline mb-4">
+                <label class="form-label" for="form4Example1">CompanyManager Status :</label>
+                <select asp-for="Status" asp-items="@Html.GetEnumSelectList<Status>()" class="form-control">
+                    <option value="" disabled selected hidden>Choose Status...</option>
+                </select>
+            </div>
+
+            <!-- Company input -->
+            <div class="form-outline mb-4">
+                <label class="form-label" for="form4Example2">CompanyManager CompanyID</label>
+                <input asp-for="@Model.CompanyID" id="form4Example2" class="form-control" />
+            </div>
+
+            <!-- AppUserID input -->
+            <div class="form-outline mb-4">
+                <label class="form-label" for="form4Example2">CompanyManager AppUserID</label>
+                <input asp-for="@Model.AppUserID" id="form4Example2" class="form-control" />
+            </div>
+
+            <!-- Submit button -->
+            <input type="submit" class="btn btn-primary btn-block mb-4" value="Değişiklikleri Kaydet" />
+        </form>
+
+    </div>
+</div>
+

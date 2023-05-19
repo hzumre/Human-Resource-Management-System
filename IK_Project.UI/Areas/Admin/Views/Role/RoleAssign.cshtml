@@ -1,0 +1,45 @@
+﻿@using IK_Project.UI.Areas.Admin.Models.ViewModels.RoleVMs;
+
+@{
+    ViewData["Title"] = "RoleAssign";
+}
+
+@model List<UserRoleAssignVM>
+<form asp-action="RoleAssign" asp-controller="Role" method="post">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Role Name
+                </th>
+                <th>
+                    Status
+                </th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @for (int i = 0; i < Model.Count; i++)
+            {
+                <tr>
+                    <td>
+                        @Model[i].Name
+                        <input type="hidden" asp-for="@Model[i].Id" />
+                        <input type="hidden" asp-for="@Model[i].Name" />
+                    </td>
+                    <td><input type="checkbox" asp-for="@Model[i].HasAssign" /> </td>
+
+                </tr>
+            }
+            <tr>
+                <td colspan="2">
+                    <div class="text-center pt-1 mb-5 pb-1">
+                        <input type="submit" class="btn btn-primary btn-block" value="Role Assign" />
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+</form>
+

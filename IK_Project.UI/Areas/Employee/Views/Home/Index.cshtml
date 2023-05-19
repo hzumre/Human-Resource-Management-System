@@ -1,0 +1,60 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+
+<style>
+    .container3 {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        background-color: white;
+        /*        height: 250px;
+                  gap: 10px;   */
+    }
+</style>
+
+
+
+<div class="container3">
+
+    @await Component.InvokeAsync("Employee")
+
+</div>
+
+<div class="container3">
+    <div class="card" style="width: 23rem;">
+        <img src="~/images/work2.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title">Expense transactions</h5>
+            <p class="card-body">Adding, deleting, updating and listing Expense are done in this section. </p>
+        </div>
+        <div class="card-footer">
+            <a class="btn btn-block btn-danger" style="color:azure; font-size:larger" asp-action="GetMyAllExpenses" asp-area="Employee" asp-controller="Expense">Click</a>
+        </div>
+    </div>
+    <div class="card" style="width: 23rem;">
+        <img src="~/images/work2.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title">Advance transactions</h5>
+            <p class="card-body">Adding, deleting, updating and listing Advance are done in this section. </p>
+        </div>
+        <div class="card-footer">
+            <a class="btn btn-block btn-primary" style="color:azure; font-size:larger" asp-action="GetMyAllAdvances" asp-area="Employee" asp-controller="Advance">Click</a>
+        </div>
+    </div>
+    <div class="card" style="width: 23rem;">
+        <img src="~/images/work2.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title">Permission transactions</h5>
+            <p class="card-body">Adding, deleting, updating and listing Permission are done in this section. </p>
+        </div>
+        <div class="card-footer">
+            <a class="btn btn-block btn-success" style="color:azure; font-size:larger" asp-action="GetMyAllPermission" asp-area="Employee" asp-controller="Permission">Click</a>
+        </div>
+    </div>
+
+</div>
+
+

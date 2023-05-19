@@ -1,0 +1,241 @@
+﻿@using IK_Project.Domain.Enums;
+@using IK_Project.UI.Areas.Admin.Models.ViewModels.CompanyVM;
+
+
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+@model CompanyCreateVM
+
+<html lang="en">
+<style>
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+
+    input[type=text], select, textarea {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        margin-top: 6px;
+        margin-bottom: 16px;
+        resize: vertical;
+    }
+
+    input[type=date], select, textarea {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        margin-top: 6px;
+        margin-bottom: 16px;
+        resize: vertical;
+    }
+
+    input[type=email], select, textarea {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        margin-top: 6px;
+        margin-bottom: 16px;
+        resize: vertical;
+    }
+
+    input[type=number], select, textarea {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        margin-top: 6px;
+        margin-bottom: 16px;
+        resize: vertical;
+    }
+
+    input[type=password], select, textarea {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        margin-top: 6px;
+        margin-bottom: 16px;
+        resize: vertical;
+    }
+
+    input[type=submit] {
+        background-color: #04AA6D;
+        color: white;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+        input[type=submit]:hover {
+            background-color: #45a049;
+        }
+    
+</style>
+
+<div class="container-xl px-4 mt-4">
+    <form enctype="multipart/form-data" method="post" asp-action="Create" asp-area="Admin" asp-controller="Company">
+
+        <div class="card-header" style="font-size:20px;">Company Details</div>
+        <br />
+        <!-- Photo input -->
+
+        <div class="mb-3">
+            <div class="card mb-4 mb-xl-0">
+                <div class="card-header" style="font-size:18px;">Logo</div>
+
+                <div class="card-body text-center">
+                    @if (Model.Logo != null)
+                    {
+                        <img src="~/images/@Model.Logo" />
+                    }
+
+                    <input type="text" hidden readonly asp-for="Logo" value="@Model.Logo" />
+
+                    <input lang="en" type="file" asp-for="Logo" class="form-control" />
+
+                    <span asp-validation-for="Logo" class="text-danger"></span>
+
+
+                </div>
+            </div>
+            @*  </div>*@
+
+
+        </div>
+
+        <div class="card mb-4 mb-xl-0">
+            <div class="card-header" style="font-size:18px;">Details</div>
+
+            <div class="card-body">
+                <!-- Name input -->
+
+
+                <div class="mb-3">
+                    <label style="font-size:16px;" class="small mb-1" for="form4Example1">Company Name:</label>
+                    <input style="font-size:16px;" asp-for="CompanyName" id="form4Example1" type="text" />
+                    <span asp-validation-for="CompanyName" class="text-danger"></span>
+
+                </div>
+
+
+                <!-- CompanyTitle input -->
+
+                <div class="mb-3">
+                    <label style="font-size:16px;" class="form-label" for="form4Example2">Company Title:</label>
+                    <select style="font-size:16px;" style="height:max-content" asp-for="@Model.CompanyTitle" asp-items="@Html.GetEnumSelectList<CompanyTitle>()">
+                        <option value="">Choose company title..</option>
+                    </select>
+
+
+                </div>
+
+                <div class="mb-3">
+                    <label style="font-size:16px;" class="small mb-1" for="form4Example1">Number Of Employees:</label>
+                    <input style="font-size:16px;" asp-for="NumberOfEmployees" id="form4Example1" type="number" />
+                    <span asp-validation-for="NumberOfEmployees" class="text-danger"></span>
+
+                </div>
+
+
+                <div class="mb-3">
+                    <label style="font-size:16px;" asp-for=@Model.MersisNo class="small mb-1" for="inputLocation">Mersis No:</label>
+                    <input style="font-size:16px;" asp-for=@Model.MersisNo id="inputLocation" type="text">
+
+                </div>
+                <div class="mb-3">
+                    <label style="font-size:16px;" asp-for=@Model.TaxNo class="small mb-1" for="inputLocation">Tax No:</label>
+                    <input style="font-size:16px;" asp-for=@Model.TaxNo id="inputLocation" type="text">
+
+                </div>
+
+                <div class="mb-3">
+                    <label style="font-size:16px;" asp-for=@Model.TaxAdministration class="small mb-1" for="inputLocation">Tax Administration:</label>
+                    <input style="font-size:16px;" asp-for=@Model.TaxAdministration id="inputLocation" type="text">
+
+                </div>
+
+                <div class="mb-3">
+                    <label style="font-size:16px;" asp-for=@Model.PhoneNumber class="small mb-1" for="inputLocation">Phone Number:</label>
+                    <input style="font-size:16px;" asp-for=@Model.PhoneNumber id="inputLocation" type="text">
+                    <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+
+                </div>
+
+                <!-- Address input -->
+                <div class="mb-3">
+                    <label style="font-size:16px;" asp-for=@Model.Address class="small mb-1" for="inputLocation">Address:</label>
+                    <input style="font-size:16px;" asp-for=@Model.Address id="inputLocation" type="text">
+                    <span asp-validation-for="Address" class="text-danger"></span>
+
+                </div>
+
+
+                <div class="mb-3">
+                    <label style="font-size:16px;" class="small mb-1" for="form4Example1">Email:</label>
+                    <input style="font-size:16px;" asp-for="Email" id="form4Example1" type="email" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+
+                </div>
+
+                <div class="mb-3">
+                    <label style="font-size:16px;" asp-for=@Model.Founded class="small mb-1" for="inputUsername">Founded:</label>
+                    <input style="font-size:16px;" asp-for=@Model.Founded id="form4Example2" type="date" value="">
+
+
+                </div>
+
+                <div class="mb-3">
+                    <label style="font-size:16px;" asp-for=@Model.DealStartDate class="small mb-1" for="inputUsername">Deal Start Date:</label>
+                    <input style="font-size:16px;" asp-for=@Model.DealStartDate id="form4Example2" type="date" value="">
+
+
+                </div>
+
+                <div class="mb-3">
+                    <label style="font-size:16px;" asp-for=@Model.DealEndDate class="small mb-1" for="inputUsername">Deal End Date:</label>
+                    <input style="font-size:16px;" asp-for=@Model.DealEndDate id="form4Example2" type="date" value="">
+
+
+                </div>
+
+
+
+                <!--Status input -->
+@*                <div class="mb-4">
+                    <label class="form-label" for="form4Example1">Status:</label>
+                    <select style="height:max-content" asp-for="Status" asp-items="@Html.GetEnumSelectList<Status>()" class="form-control">
+                        <option value="" disabled selected hidden>Choose current status..</option>
+                    </select>
+
+                </div>*@
+                <button type="submit" class="btn btn-primary float-right">Create Company</button>
+
+            </div>
+
+            <!-- Submit button -->
+
+
+        </div>
+
+    </form>
+
+</div>
+</html>
+

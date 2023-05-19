@@ -1,0 +1,265 @@
+﻿@using IK_Project.Domain.Enums;
+@using IK_Project.UI.Areas.Employee.Models.PermissionVMs;
+
+@{
+    ViewData["Title"] = "Add";
+}
+
+@model PermissionCreateVM
+
+@*@using (Html.BeginForm())
+{
+    @Html.LabelFor(m => m.StartDate)
+    @Html.TextBoxFor(m => m.StartDate)
+
+    @Html.LabelFor(m => m.EndDate)
+    @Html.TextBoxFor(m => m.EndDate)
+
+    <button type="submit">Calculate</button>
+
+    <br />
+
+    @Html.LabelFor(m => m.DateDifference)
+    @Html.DisplayFor(m => m.DateDifference)
+}*@
+<style>
+
+   /* body {
+        margin-top: 20px;
+        background-color: #f2f6fc;
+        color: #69707a;
+    }
+
+    .img-account-profile {
+        height: 10rem;
+    }
+
+    .rounded-circle {
+        border-radius: 50% !important;
+    }
+
+    .card {
+        box-shadow: 0 0.15rem 1.75rem 0 rgb(33 40 50 / 15%);
+    }
+
+        .card .card-header {
+            font-weight: 500;
+        }
+
+    .card-header:first-child {
+        border-radius: 0.35rem 0.35rem 0 0;
+    }
+
+    .card-header {
+        padding: 1rem 1.35rem;
+        margin-bottom: 0;
+        background-color: rgba(33, 40, 50, 0.03);
+        border-bottom: 1px solid rgba(33, 40, 50, 0.125);
+    }
+
+    .form-control, .dataTable-input {
+        display: block;
+        width: 100%;
+        padding: 0.875rem 1.125rem;
+        font-size: 0.875rem;
+        font-weight: 400;
+        line-height: 1;
+        color: #69707a;
+        background-color: #fff;
+        background-clip: padding-box;
+        border: 1px solid #c5ccd6;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        border-radius: 0.35rem;
+        transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    }
+
+    .nav-borders .nav-link.active {
+        color: #0061f2;
+        border-bottom-color: #0061f2;
+    }
+
+    .nav-borders .nav-link {
+        color: #69707a;
+        border-bottom-width: 0.125rem;
+        border-bottom-style: solid;
+        border-bottom-color: transparent;
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
+        padding-left: 0;
+        padding-right: 0;
+        margin-left: 1rem;
+        margin-right: 1rem;
+    }*/
+    .alert {
+        padding: 20px;
+        background-color: #f44336;
+        color: white;
+    }
+
+    .closebtn {
+        margin-left: 15px;
+        color: white;
+        font-weight: bold;
+        float: right;
+        font-size: 22px;
+        line-height: 20px;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+        .closebtn:hover {
+            color: black;
+        }
+
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+
+    input[type=text], select, textarea {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        margin-top: 6px;
+        margin-bottom: 16px;
+        resize: vertical;
+    }
+
+    input[type=date], select, textarea {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        margin-top: 6px;
+        margin-bottom: 16px;
+        resize: vertical;
+    }
+
+    input[type=number], select, textarea {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        margin-top: 6px;
+        margin-bottom: 16px;
+        resize: vertical;
+    }
+
+    input[type=submit] {
+        background-color: #04AA6D;
+        color: white;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+        input[type=submit]:hover {
+            background-color: #45a049;
+        }
+
+    /*.container {
+            border-radius: 5px;
+            background-color: transparent;
+            padding: 10px;
+        }*/
+
+</style>
+
+
+<div class="container-xl px-4 mt-4">
+
+    <form enctype="multipart/form-data" method="post" asp-action="Add" asp-area="Employee" asp-controller="Permission">
+
+        <div class="mb-3">
+            <div class="card mb-4 mb-xl-0">
+                <div class="card-header" style="font-size:20px;">Permission File</div>
+                <div class="card-body text-center">
+
+                    <input type="hidden" asp-for="PermissionFilePath" />
+                    <label hidden asp-for="PermissionFilePath" class="control-label"></label>
+                    <input type="file" accept=".pdf, .jpg, .jpeg, .png" asp-for="PermissionFilePath" class="form-control" />
+
+                </div>
+            </div>
+        </div>
+
+
+        <div class="card mb-4 mb-xl-0">
+            <div class="card-header" style="font-size:20px">Permission Details</div>
+            <div class="card-body">
+
+                <div class="mb-3">
+                    <label for="form4Example1" style="font-size:16px;" asp-for="PermissionType" class="small mb-1">Permission Type:</label>
+                    <select style="font-size:16px;" style="height:max-content" asp-for="PermissionType" asp-items="@Html.GetEnumSelectList<PermissionType>()" ></select>
+
+                </div>
+                <div class="mb-3">
+                    <label class="small mb-1" style="font-size:16px;" for="startdate">Start Date:</label>
+                    <input type="date" value="@Model.StartDate.ToShortDateString()" asp-for="StartDate" id="StartDate"  />
+                    <span asp-validation-for="StartDate" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label class="small mb-1" style="font-size:16px;" for="enddate">End Date:</label>
+                    <input type="date" value="@Model.EndDate.ToShortDateString()" asp-for="EndDate" id="EndDate" />
+                    <span asp-validation-for="EndDate" class="text-danger"></span>
+                    <script>
+                        var endDate = document.getElementById("EndDate");
+                        var startedDate = document.getElementById("StartDate");
+
+                        endDate.addEventListener("change", function () {
+                            if (new Date(endDate.value) < new Date(startedDate.value)) {
+                                alert("The end day cannot be earlier than the start day.");
+                                endDate.value = "";
+                            }
+                        });
+                    </script>
+                </div>
+
+                <div class="mb-3">
+                    <label class="small mb-1" style="font-size:16px;" for="DateDifference">Number Of Days:</label>
+                    <input asp-for="NumberOfDays" type="text" id="datediff" style="background-color:lightgrey;" readonly />
+                    <script>
+                        function updateDateDifference() {
+                            const date1 = new Date(document.getElementById("StartDate").value);
+                            const date2 = new Date(document.getElementById("EndDate").value);
+                            const diff = ((date2 - date1) / (1000 * 60 * 60 * 24))+1;
+                            document.getElementById("datediff").value = diff;
+                        }
+
+                        document.getElementById("StartDate").addEventListener("change", updateDateDifference);
+                        document.getElementById("EndDate").addEventListener("change", updateDateDifference);
+                    </script>
+                </div>
+             
+                <div class="mb-3">
+                    <label hidden class="small mb-1" for="form4Example1">EmployeeId:</label>
+                    <input readonly hidden asp-for="EmployeeId" id="form4Example1" class="form-control" />
+                </div>
+                <div class="mb-3">
+                    <label hidden class="small mb-1" for="form4Example1">AppUserId:</label>
+                    <input readonly hidden asp-for="AppUserId" id="form4Example1" class="form-control" />
+                </div>
+
+                <button type="submit" class="btn btn-primary float-right" style="font-size:16px;">Send Permission Demand</button>
+
+            </div>
+
+
+        </div>
+    </form>
+
+
+
+</div>
+
+

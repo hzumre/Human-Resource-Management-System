@@ -1,0 +1,163 @@
+﻿@using IK_Project.Domain.Enums;
+@using IK_Project.UI.Areas.Employee.Models.AdvanceVMs;
+
+@{
+    ViewData["Title"] = "AdvanceDetails";
+}
+
+
+@model AdvanceUpdateVM
+
+
+
+<html lang="en">
+<style>
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+
+    input[type=text], select, textarea {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        margin-top: 6px;
+        margin-bottom: 16px;
+        resize: vertical;
+    }
+
+    input[type=number], select, textarea {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        margin-top: 6px;
+        margin-bottom: 16px;
+        resize: vertical;
+    }
+
+    input[type=submit] {
+        background-color: #04AA6D;
+        color: white;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+        input[type=submit]:hover {
+            background-color: #45a049;
+        }
+
+</style>
+
+<div class="container-xl px-4 mt-4">
+
+
+    <!-- Account details card-->
+
+
+    <form enctype="multipart/form-data " method="post" asp-action="AdvanceDetails" asp-area="CompanyManager" asp-controller="Advance">
+
+        @*  <div class="col-xl-4">*@
+        <!-- Profile picture card-->
+
+
+        <div class="card mb-4 mb-xl-0">
+            <div class="card-header" style="font-size:20px;">Advance Details</div>
+            <div class="card-body">
+
+                <div class="mb-3">
+                    <input hidden readonly asp-for=EmployeeId class="form-control" id="inputCompany" type="text" value="@Model.EmployeeId">
+                </div>
+
+                <div class="mb-3">
+                    <label hidden asp-for=Id class="small mb-1" for="inputCompany">ID:</label>
+                    <input hidden readonly asp-for=Id class="form-control" id="inputCompany" type="text" value="@Model.Id">
+                </div>
+
+                <div class="mb-3">
+                    <label style="font-size:16px;" asp-for=AdvanceType class="small mb-1" for="inputCompany">Advance Type:</label>
+                    <input style="font-size:16px; background-color:lightgrey;" readonly asp-for=AdvanceType  id="inputCompany" type="text" value="@Model.AdvanceType ">
+                </div>
+
+                <div class="mb-3">
+                    <label style="font-size:16px;" asp-for=Amount class="small mb-1" for="inputCompany">Amount:</label>
+                    <input style="font-size:16px; background-color:lightgrey;" readonly asp-for=Amount class="form-control" id="inputCompany" type="text" value="@Model.Amount">
+                </div>
+
+                <div class="mb-3">
+                    <label style="font-size:16px;" asp-for=CurrencyUnit class="small mb-1" for="inputCompany">Currency Unit:</label>
+                    <input style="font-size:16px; background-color:lightgrey;" readonly asp-for=CurrencyUnit  id="inputCompany" type="text" value="@Model.CurrencyUnit">
+                </div>
+
+
+                <div class="mb-3">
+                    <label style="font-size:16px;" asp-for=DateOfReply class="small mb-1" for="inputCompany">Date Of Reply:</label>
+                    <input style="font-size:16px; background-color:lightgrey;" readonly asp-for=DateOfReply  id="inputCompany" type="text" value="@DateTime.Now.ToShortDateString()">
+                </div>
+
+                <div class="mb-3">
+                    <label style="font-size:16px;" class="small mb-1" for="form4Example1">Confirmation Status:</label>
+                    <select style="font-size:16px;" style="height:max-content" asp-for="ConfirmationStatus" asp-items="@Html.GetEnumSelectList<ConfirmationStatus>()">
+                        <option value="" disabled selected hidden>Choose Confirmation Status ...</option>
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label style="font-size:16px;" asp-for=Description class="small mb-1" for="inputCompany">Description:</label>
+                    <input style="font-size:16px;" asp-for=Description id="inputCompany" type="text" value="@Model.Description">
+                </div>
+                <div class="mb-3">
+                    <label hidden class="small mb-1" for="form4Example1">EmployeeId:</label>
+                    <input hidden readonly asp-for="EmployeeId" id="form4Example1" class="form-control" />
+                </div>
+                <div class="mb-3">
+                    <label hidden class="small mb-1" for="form4Example1">AppUserId:</label>
+                    <input hidden readonly asp-for="AppUserId" id="form4Example1" class="form-control" />
+                </div>
+
+                <div class="mb-3">
+                    <label hidden asp-for=CreatedDate class="small mb-1" for="inputDateTime">CreatedDate:</label>
+                    <input hidden readonly asp-for=CreatedDate class="form-control" id="inputDateTime" type="text" value="@Model.CreatedDate">
+                </div>
+
+                <div class="mb-3">
+                    <label hidden class="form-label" for="inputCompany">ModifiedBy:</label>
+                    <input hidden readonly asp-for=@Model.ModifiedBy class="form-control" id="inputCompany" type="text" value="@Model.ModifiedBy">
+                </div>
+
+
+                <div class="mb-3">
+                    <label hidden class="form-label" for="inputCompany">CreatedBy:</label>
+                    <input hidden readonly asp-for=@Model.CreatedBy class="form-control" id="inputCompany" type="text" value="@Model.CreatedBy">
+                </div>
+
+                <div class="mb-3">
+                    <label hidden class="form-label" for="inputDateTime">ModifiedDate:</label>
+                    <input hidden readonly asp-for=@Model.ModifiedDate class="form-control" id="inputDateTime" type="text" value="@Model.ModifiedDate">
+                </div>
+
+                <div class="mb-3">
+                    <label hidden class="form-label" for="inputDateTime">Status:</label>
+                    <input hidden readonly asp-for=@Model.Status class="form-control" id="inputDateTime" type="text" value=@Model.Status>
+                </div>
+
+
+                <!-- Save changes button-->
+                <button type="submit" class="btn btn-primary float-right">Save My Decision</button>
+            </div>
+        </div>
+
+    </form>
+
+</div>
+
+
+</html>

@@ -1,0 +1,100 @@
+﻿@using IK_Project.UI.Areas.Admin.Models.ViewModels.MenuVMs;
+
+@{
+    ViewData["Title"] = "GetAllMenus";
+}
+
+@model List<MenuListVM>
+
+<div class="row">
+    <div class="col-lg-12">
+        <a class="btn btn-primary" style="color:azure; font-size:larger" asp-action="Create">Add New Menu</a>
+    </div>
+
+</div>
+
+<br />
+<div class="row">
+    <div class="col-lg-12">
+        <table class="table align-middle mb-0 bg-white">
+            <thead class="bg-light">
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Period</th>
+                    <th>UnitPrice</th>
+                    <th>Release Date</th>
+               @*     <th>Deleted Date</th>*@
+                    <th>User Amount</th>
+                    <th>Currecy</th>
+                    <th>Status</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            <p class="fw-normal mb-1" asp-for="@item.Id">@item.Id</p>
+                            <p class="text-muted mb-0"></p>
+                        </td>
+                        <td>
+                            <p class="fw-normal mb-1" asp-for="@item.Name">@item.Name</p>
+                            <p class="text-muted mb-0"></p>
+                        </td>
+                        <td>
+                            <p class="fw-normal mb-1" asp-for="@item.Period">@item.Period</p>
+                        </td>
+
+                        <td>
+                            <p class="fw-normal mb-1" asp-for="@item.UnitPrice">@item.UnitPrice</p>
+                            <p class="text-muted mb-0"></p>
+                        </td>
+                        <td>
+                            <p class="fw-normal mb-1" asp-for="@item.ReleaseDate">@item.ReleaseDate.ToShortDateString()</p>
+                            <p class="text-muted mb-0"></p>
+                        </td>
+                       @* <td>
+                            <p class="fw-normal mb-1" asp-for="@item.DeletedDate">@item.DeletedDate</p>
+                            <p class="text-muted mb-0"></p>
+                        </td>*@
+
+                        <td>
+                            <p class="fw-normal mb-1" asp-for="@item.UserAmount">@item.UserAmount</p>
+                            <p class="text-muted mb-0"></p>
+                        </td>
+
+                        <td>
+                            <p class="fw-normal mb-1" asp-for="@item.Currecy">@item.Currecy</p>
+                            <p class="text-muted mb-0"></p>
+                        </td>
+
+                        <td>
+                            <p class="fw-normal mb-1" asp-for="@item.Status">@item.Status</p>
+                        </td>
+
+                        <td>
+                            <a asp-action="Edit" asp-area="Admin" asp-controller="Menu" asp-route-id="@item.Id" type="button" class="btn btn-secondary">
+                                Edit
+                            </a>
+                        </td>
+                        <td>
+                            <a asp-action="Delete" asp-area="Admin" asp-controller="Menu" asp-route-id="@item.Id" type="button" class="btn btn-danger">
+                                Delete
+                            </a>
+                        </td>
+
+
+                    </tr>
+                }
+
+
+            </tbody>
+        </table>
+
+    </div>
+</div>
+

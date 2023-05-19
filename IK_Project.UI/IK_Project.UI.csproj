@@ -1,0 +1,110 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Areas\CompanyManager\**" />
+    <Content Remove="Areas\CompanyManager\**" />
+    <EmbeddedResource Remove="Areas\CompanyManager\**" />
+    <None Remove="Areas\CompanyManager\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="wwwroot\images\bann_img.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="Areas\CompanyManager\Controllers\AdvanceController.cs" />
+    <Compile Include="Areas\CompanyManager\Controllers\CompanyManagerController.cs" />
+    <Compile Include="Areas\CompanyManager\Controllers\EmployeeController.cs" />
+    <Compile Include="Areas\CompanyManager\Controllers\ExpenseController.cs" />
+    <Compile Include="Areas\CompanyManager\Controllers\HomeController.cs" />
+    <Compile Include="Areas\CompanyManager\Controllers\PermissionController.cs" />
+    <Compile Include="Areas\CompanyManager\Models\CompanyManagerVM.cs" />
+    <Compile Include="Areas\CompanyManager\Models\Employee\EmployeeCreateVM.cs" />
+    <Compile Include="Areas\CompanyManager\Models\Employee\EmployeeListVM.cs" />
+    <Compile Include="Areas\CompanyManager\Models\NotificationVM.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Areas\CompanyManager\Views\_ViewImports.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Areas\CompanyManager\Views\_ViewStart.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Areas\Admin\Data\" />
+    <Folder Include="Areas\CompanyManager\Data\" />
+    <Folder Include="Areas\CompanyManager\Views\Shared\" />
+    <Folder Include="wwwroot\icon\" />
+    <Folder Include="wwwroot\expenseFiles\" />
+    <Folder Include="wwwroot\permissionFiles\" />
+    <Folder Include="wwwroot\permissionFiles\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Areas\CompanyManager\Views\Home\Index.cshtml" />
+    <Content Include="Areas\CompanyManager\Views\Home\ProfileDetails.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Areas\CompanyManager\Views\Employee\GetAllEmployees.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Areas\CompanyManager\Views\Employee\Create.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Areas\CompanyManager\Views\Employee\Index.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Areas\CompanyManager\Views\Expense\CheckExpenseDemands.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Areas\CompanyManager\Views\Expense\Details.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Areas\CompanyManager\Views\CompanyManager\Create.cshtml" />
+    <Content Include="Areas\CompanyManager\Views\CompanyManager\Details.cshtml" />
+    <Content Include="Areas\CompanyManager\Views\CompanyManager\GetAllCompanyManagers.cshtml" />
+    <Content Include="Areas\CompanyManager\Views\CompanyManager\Index.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Areas\CompanyManager\Views\Advance\AdvanceDetails.cshtml" />
+    <Content Include="Areas\CompanyManager\Views\Advance\CheckAdvanceDemands.cshtml" />
+    <Content Include="Areas\CompanyManager\Views\Permission\CheckPermissionDemands.cshtml" />
+    <Content Include="Areas\CompanyManager\Views\Permission\Details.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Areas\CompanyManager\Views\CompanyManager\GetAllActiveCompanyManagers.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.4">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="7.0.6" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\IK_Project.Application\IK_Project.Application.csproj" />
+    <ProjectReference Include="..\IK_Project.Infrastructure\IK_Project.Infrastructure.csproj" />
+  </ItemGroup>
+
+</Project>

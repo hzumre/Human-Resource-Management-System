@@ -1,0 +1,280 @@
+﻿@using IK_Project.UI.Areas.Admin.Models.ViewModels.AdminVM;
+@using IK_Project.Domain.Enums
+@{
+    ViewData["Title"] = "Create";
+}
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+<script src="~/lib/jquery-validate/jquery.validate.js"></script>
+<script src="~/lib/jquery-validate/jquery.validate.min.js"></script>
+@model AdminCreateVM
+
+@*@{
+    List<UserListsVM> userList = TempData["UserList"] as List<UserListsVM>;
+}*@
+
+<html lang="en">
+<style>
+
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+
+    input[type=text], select, textarea {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        margin-top: 6px;
+        margin-bottom: 16px;
+        resize: vertical;
+    }
+
+    input[type=date], select, textarea {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        margin-top: 6px;
+        margin-bottom: 16px;
+        resize: vertical;
+    }
+
+    input[type=email], select, textarea {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        margin-top: 6px;
+        margin-bottom: 16px;
+        resize: vertical;
+    }
+
+    input[type=number], select, textarea {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        margin-top: 6px;
+        margin-bottom: 16px;
+        resize: vertical;
+    }
+
+    input[type=password], select, textarea {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        margin-top: 6px;
+        margin-bottom: 16px;
+        resize: vertical;
+    }
+
+    input[type=submit] {
+        background-color: #04AA6D;
+        color: white;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+        input[type=submit]:hover {
+            background-color: #45a049;
+        }
+   
+</style>
+
+<div class="container-xl px-4 mt-4">
+
+
+    <!-- Account details card-->
+
+
+    <form enctype="multipart/form-data" method="post" asp-action="Create" asp-area="Admin" asp-controller="Admin">
+
+        @*  <div class="col-xl-4">*@
+        <!-- Profile picture card-->
+
+        <div class="card-header" style="font-size:20px;">Profile Details</div>
+        <br />
+        <div class="mb-3">
+            <div class="card mb-4 mb-xl-0">
+                <div class="card-header" style="font-size:18px;">Profile Picture</div>
+
+                <div class="card-body text-center">
+
+                    <input lang="en" type="file" asp-for="ProfilePhoto" class="form-control" />
+
+                    <span asp-validation-for="ProfilePhoto" class="text-danger"></span>
+
+
+                </div>
+            </div>
+            @*  </div>*@
+
+
+        </div>
+
+
+        <div class="card mb-4 mb-xl-0">
+            <div class="card-header" style="font-size:18px;">Details</div>
+
+            <div class="card-body">
+
+                <div class="mb-3">
+                    <label asp-for="AppUserID">Please Select User</label><br />
+                    <select style="font-size:16px;" style="height:max-content" asp-for="AppUserID">
+                        @foreach (var item in Model.AppUserDTOs)
+                        {
+                            <option value="@item.Id">@item.UserName</option>
+                        }
+                    </select>
+                </div>
+
+
+                @*<div class="mb-3">
+                    <label asp-for=AppUserID class="small mb-1" for="inputUsername">UserID:</label>
+                    <input readonly asp-for=AppUserID class="form-control" id="inputUsername" type="text" value="@Model.AppUserID">
+                </div>*@
+
+                <div class="mb-3">
+                    <label style="font-size:16px;" asp-for=@Model.CompanyID class="small mb-1" for="inputUsername">CompanyID:</label>
+                    <input style="font-size:16px;" asp-for=@Model.CompanyID id="inputUsername" type="text" value="@Model.CompanyID">
+                </div>
+
+                <div class="mb-3">
+                    <label style="font-size:16px;" class="small mb-1" for="form4Example1">CitizenId:</label>
+                    <input style="font-size:16px;" asp-for="CitizenId" id="form4Example1" type="text" />
+                    <span asp-validation-for="CitizenId" class="text-danger"></span>
+                </div>
+
+                <!-- Form Group (username)-->
+
+                <div class="mb-3">
+                    <label style="font-size:16px;" class="small mb-1" for="form4Example1">Name:</label>
+                    <input style="font-size:16px;" asp-for="Name" id="form4Example1" type="text" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+
+                <!-- SecondName input -->
+                <div class="mb-3">
+                    <label style="font-size:16px;" class="small mb-1" for="form4Example1">SecondName:</label>
+                    <input style="font-size:16px;" asp-for="SecondName" id="form4Example2" type="text" />
+                </div>
+
+                <!-- LastName input -->
+                <div class="mb-3">
+                    <label style="font-size:16px;" class="small mb-1" for="form4Example1">LastName:</label>
+                    <input style="font-size:16px;" asp-for="LastName" id="form4Example1" type="text" />
+                    <span asp-validation-for="LastName" class="text-danger"></span>
+                </div>
+
+                <!-- SecondLastName input -->
+                <div class="mb-3">
+                    <label style="font-size:16px;" asp-for=@Model.SecondLastName class="small mb-1" for="inputUsername">Second Last Name:</label>
+                    <input style="font-size:16px;" asp-for=@Model.SecondLastName id="inputUsername" type="text">
+                </div>
+
+                <div class="mb-3">
+                    <label style="font-size:16px;" asp-for=@Model.BirthDate class="small mb-1" for="inputUsername">Birth Date:</label>
+                    <input style="font-size:16px;" asp-for=@Model.BirthDate id="form4Example2" type="date" value="">
+                    <span asp-validation-for="BirthDate" class="text-danger"></span>
+
+                </div>
+
+                <!-- BirhtPlace input -->
+                <div class="mb-3">
+                    <label style="font-size:16px;" asp-for=@Model.BirhtPlace class="small mb-1" for="inputUsername">Birth Place:</label>
+                    <input style="font-size:16px;" asp-for=@Model.BirhtPlace id="inputUsername" type="text">
+                    <span asp-validation-for="BirhtPlace" class="text-danger"></span>
+
+
+                </div>
+
+
+                <div class="mb-3">
+                    <label style="font-size:16px;" asp-for=@Model.StartDate class="small mb-1" for="inputUsername">Start Date:</label>
+                    <input style="font-size:16px;" asp-for=@Model.StartDate id="form4Example2" type="date" value="">
+                    <span asp-validation-for="StartDate" class="text-danger"></span>
+
+                </div>
+
+
+                <div class="mb-3">
+                    <label style="font-size:16px;" class="small mb-1" for="form4Example1">Email:</label>
+                    <input style="font-size:16px;" asp-for="Email" id="form4Example1" type="email" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+
+                </div>
+
+
+                <div class="mb-3">
+                    <label style="font-size:16px;" asp-for=@Model.Address class="small mb-1" for="inputLocation">Address:</label>
+                    <input style="font-size:16px;" asp-for=@Model.Address id="inputLocation" type="text">
+                    <span asp-validation-for="Address" class="text-danger"></span>
+
+                </div>
+
+
+                <div class="mb-3">
+                    <label style="font-size:16px;" asp-for=@Model.PhoneNumber class="small mb-1" for="inputLocation">Phone Number:</label>
+                    <input style="font-size:16px;" asp-for=@Model.PhoneNumber id="inputLocation" type="text">
+                    <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+
+                </div>
+
+                <div class="mb-3">
+                    <label style="font-size:16px;" class="form-label" for="form4Example2">Profession:</label>
+                    <select style="font-size:16px;" style="height:max-content" asp-for="@Model.Profession" asp-items="@Html.GetEnumSelectList<Profession>()">
+                        <option value="">Choose profession..</option>
+                    </select>
+                    <span asp-validation-for="Profession" class="text-danger"></span>
+
+                </div>
+
+                <!-- Department input -->
+                <div class="mb-3">
+                    <label style="font-size:16px;" class="form-label" for="form4Example2">Department:</label>
+                    <select style="font-size:16px;" style="height:max-content" asp-for="@Model.Department" asp-items="@Html.GetEnumSelectList<Department>()">
+                        <option value="">Choose department..</option>
+                    </select>
+                    <span asp-validation-for="Department" class="text-danger"></span>
+
+                </div>
+
+                @*<div class="mb-3">
+                    <label class="form-label" for="form4Example2">Profession:</label>
+                    <input asp-for=@Model.Profession class="form-control" id="inputLocation" type="text" value=@Model.Profession>
+                </div>
+
+
+                <div class="mb-3">
+                    <label class="form-label" for="form4Example2">Department:</label>
+                    <input asp-for=@Model.Department class="form-control" id="inputLocation" type="text" value=@Model.Department>
+                </div>*@
+
+
+                <!-- Save changes button-->
+                <button type="submit" class="btn btn-primary float-right">Save Changes</button>
+            </div>
+        </div>
+
+    </form>
+
+</div>
+
+
+</html>
+
+

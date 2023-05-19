@@ -1,0 +1,33 @@
+﻿@using IK_Project.UI.Areas.Admin.Models.ViewModels.RoleVMs;
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+@model RoleCreateVM
+
+
+
+<div class="row">
+    <div class="col-lg-12">
+        <form method="post" asp-action="Create" asp-area="Admin" asp-controller="Role">
+
+            <div class="form-outline mb-4">
+                <label class="form-label" for="form4Example1">Role Id:</label>
+                <input readonly asp-for="Id" id="form4Example1" class="form-control" />
+            </div>
+
+            <div class="form-outline mb-4">
+                <label class="form-label" for="form4Example1">
+                    Role Name:
+                </label>
+                <input asp-for="Name" id="form4Example1" class="form-control" />
+            </div>
+
+            <!-- Submit button -->
+            <input type="submit" class="btn btn-primary btn-block mb-4" value="Add" />
+        </form>
+
+    </div>
+</div>
+

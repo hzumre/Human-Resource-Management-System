@@ -1,0 +1,17 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="d-grid">
+    <a class="btn btn-block btn-sm btn-info" style="color:azure; font-size:larger" asp-action="GetAllEmployees">List All Employees</a>
+    <br />
+    <a class="btn btn-block btn-primary" style="color:azure; font-size:larger" asp-action="Create">Add New Employee</a> 
+    <br />
+    <a class="btn btn-block btn-success" style="color:azure; font-size:larger" asp-controller="Expense" asp-action="CheckExpenseDemands">Check Expense Demands</a>
+    <br />
+    <a class="btn btn-block btn-danger" style="color:azure; font-size:larger" asp-controller="Advance" asp-action="CheckAdvanceDemands">Check Advance Demands</a>
+    <br />
+    <a class="btn btn-block btn-primary" style="color:azure; font-size:larger" asp-controller="Permission" asp-action="CheckPermissionDemands">Check Permission Demands</a>
+</div>
+

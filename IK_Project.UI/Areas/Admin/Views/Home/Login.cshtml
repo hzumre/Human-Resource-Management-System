@@ -1,0 +1,176 @@
+﻿@using IK_Project.UI.Areas.Admin.Models.ViewModels;
+
+@{
+    ViewData["Title"] = "Login";
+}
+@model LoginVM
+<style>
+
+  /*  .divider:after,
+    .divider:before {
+        content: "";
+        flex: 1;
+        height: 1px;
+        background: #eee;
+    }
+    .h-custom {
+            height: calc(100% - 73px);
+    }
+
+    input::placeholder {
+        font-size: 0.75rem;
+    }*/
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+
+    input[type=text], select, textarea {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        margin-top: 6px;
+        margin-bottom: 16px;
+        resize: vertical;
+    }
+
+    input[type=password], select, textarea {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        margin-top: 6px;
+        margin-bottom: 16px;
+        resize: vertical;
+    }
+    input[type=number], select, textarea {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        margin-top: 6px;
+        margin-bottom: 16px;
+        resize: vertical;
+    }
+
+    input[type=submit] {
+        background-color: darkblue;
+        color: white;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+        input[type=submit]:hover {
+            background-color: blue ;
+        }
+
+    /*.container {
+            border-radius: 5px;
+            background-color: transparent;
+            padding: 10px;
+        }*/
+
+</style>
+<section class="vh-100">
+    <div class="container-fluid h-custom">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-md-9 col-lg-6 col-xl-5">
+                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
+                     class="img-fluid" alt="Sample image">
+            </div>
+            <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+                <form asp-action="Login" method="post">
+                    <!-- Email input -->
+                    <div class="form-outline mb-4">
+                        <label style="font-size:16px;" for="form3Example3">User Name</label>
+
+                        <input style="font-size:16px;" asp-for="UserName" placeholder="Enter User Name" id="form3Example3" type="text" />
+                        <span asp-validation-for="UserName" class="text-danger"></span>
+                    </div>
+
+                    <!-- Password input -->
+                    <div class="form-outline mb-3">
+                        <label style="font-size:16px;" for="form3Example4">Password</label>
+
+                        <input style="font-size:16px;" type="password" asp-for="Password" id="form3Example4" placeholder="Enter password" />
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+
+                    <div class="d-flex justify-content-between align-items-center">
+                        <!-- Checkbox -->
+                        <div class="form-check mb-0">
+                            <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3" />
+                            <label style="font-size:16px;"  class="form-check-label" for="form2Example3">
+                                Remember me
+                            </label>
+                        </div>
+                        <a style="font-size:16px;" asp-action="PasswordReset" asp-controller="Home" asp-area="Admin" class="text-body">Forgot password?</a>
+                    </div>
+
+                    <div class="text-center text-lg-start mt-4 pt-2">
+                        <input style="font-size:16px;" type="submit" class="btn btn-block btn-primary" value="Log in" asp-route-Name="@User.Identity.Name" />
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+@*<div class="row d-flex justify-content-center align-items-center h-100">
+    <div class="col-xl-10">
+        <div class="card rounded-3 text-black">
+            <div class="row g-0">
+                <div class="card-body p-md-5 mx-md-4">
+                    <div class="text-center">
+                        <img src="~/images/solusan.png"
+                             style="width: 300px;" alt="logo">
+                        <h4 class="mt-1 mb-5 pb-1"></h4>
+                    </div>
+
+                    <form asp-action="Login" method="post">
+
+
+                        <div class="form-outline mb-4">
+                            <label class="form-label" for="form2Example11">User Name:</label>
+                            <input id="form2Example11" asp-for="UserName" class="form-control"
+                                   placeholder="User Name" />
+                        </div>
+
+                        <div class="form-outline mb-4">
+                            <label class="form-label" for="form2Example22">Password:</label>
+                            <input type="password" asp-for="Password" id="form2Example22" class="form-control" placeholder="Password" />
+                        </div>
+
+
+                        <div class="text-center pt-1 mb-5 pb-1">
+                            <input type="submit" class="btn btn-primary btn-block" value="Log in" asp-route-Name="@User.Identity.Name" />
+                        </div>
+
+                        <a href="#!" class="text-body">Forgot password?</a>
+
+                        
+                        <div class="d-flex align-items-center justify-content-center pb-4">
+                        <p class="mb-0 me-2">Hesabınız yok mu?</p>
+                        <a asp-action="Register" class="btn btn-outline-danger">Hesap oluştur</a>
+                        </div>
+                   </form>
+
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>*@

@@ -1,0 +1,347 @@
+﻿@using IK_Project.Domain.Enums;
+@using IK_Project.UI.Areas.CompanyManager.Models.Employee;
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+<script src="~/lib/jquery-validate/jquery.validate.js"></script>
+<script src="~/lib/jquery-validate/jquery.validate.min.js"></script>
+@model EmployeeCreateVM
+
+@{
+    int companyId = Convert.ToInt32(TempData["companyID"]);
+}
+
+@{
+    string companyName = TempData["companyName"] as string;
+}
+
+<html lang="en">
+<style>
+
+  /*  body {
+        margin-top: 20px;
+        background-color: #f2f6fc;
+        color: #69707a;
+    }
+
+    .img-account-profile {
+        height: 10rem;
+    }
+
+    .rounded-circle {
+        border-radius: 50% !important;
+    }
+
+    .card {
+        box-shadow: 0 0.15rem 1.75rem 0 rgb(33 40 50 / 15%);
+    }
+
+        .card .card-header {
+            font-weight: 500;
+        }
+
+    .card-header:first-child {
+        border-radius: 0.35rem 0.35rem 0 0;
+    }
+
+    .card-header {
+        padding: 1rem 1.35rem;
+        margin-bottom: 0;
+        background-color: rgba(33, 40, 50, 0.03);
+        border-bottom: 1px solid rgba(33, 40, 50, 0.125);
+    }
+
+    .form-control, .dataTable-input {
+        display: block;
+        width: 100%;
+        padding: 0.875rem 1.125rem;
+        font-size: 0.875rem;
+        font-weight: 400;
+        line-height: 1;
+        color: #69707a;
+        background-color: #fff;
+        background-clip: padding-box;
+        border: 1px solid #c5ccd6;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        border-radius: 0.35rem;
+        transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    }
+
+    .nav-borders .nav-link.active {
+        color: #0061f2;
+        border-bottom-color: #0061f2;
+    }
+
+    .nav-borders .nav-link {
+        color: #69707a;
+        border-bottom-width: 0.125rem;
+        border-bottom-style: solid;
+        border-bottom-color: transparent;
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
+        padding-left: 0;
+        padding-right: 0;
+        margin-left: 1rem;
+        margin-right: 1rem;
+    }*/
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+
+    input[type=text], select, textarea {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        margin-top: 6px;
+        margin-bottom: 16px;
+        resize: vertical;
+    }
+
+    input[type=date], select, textarea {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        margin-top: 6px;
+        margin-bottom: 16px;
+        resize: vertical;
+    }
+    input[type=email], select, textarea {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        margin-top: 6px;
+        margin-bottom: 16px;
+        resize: vertical;
+    }
+
+    input[type=number], select, textarea {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        margin-top: 6px;
+        margin-bottom: 16px;
+        resize: vertical;
+    }
+
+    input[type=password], select, textarea {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        margin-top: 6px;
+        margin-bottom: 16px;
+        resize: vertical;
+    }
+
+    input[type=submit] {
+        background-color: #04AA6D;
+        color: white;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+        input[type=submit]:hover {
+            background-color: #45a049;
+        }
+
+    /*.container {
+            border-radius: 5px;
+            background-color: transparent;
+            padding: 10px;
+        }*/
+
+</style>
+
+<div class="container-xl px-4 mt-4">
+
+
+    <form enctype="multipart/form-data" method="post" asp-action="Create" asp-area="CompanyManager" asp-controller="Employee">
+
+
+        <div class="card-header" style="font-size:20px;">Profile Details</div>
+        <br />
+        <div class="mb-3">
+            <div class="card mb-4 mb-xl-0">
+                <div class="card-header" style="font-size:18px;">Profile Picture</div>
+
+                <div class="card-body text-center">
+
+                    <input lang="en" type="file" asp-for="@Model.ProfilePhoto" class="form-control" />
+
+                </div>
+            </div>
+        </div>
+
+        <div class="card mb-4 mb-xl-0">
+            <div class="card-header" style="font-size:18px;">Details</div>
+        
+            <div class="card-body">
+        <div class="mb-3">
+            <label style="font-size:16px;" for="form3Example1c" asp-for="@Model.AppUser.UserName">User Name:</label>
+            <input style="font-size:16px;" asp-for="@Model.AppUser.UserName" id="form3Example1c" type="text" />
+           @* <span asp-validation-for="userName" class="text-danger"></span>*@
+
+        </div>
+
+        <div class="mb-3">
+            <label style="font-size:16px;" asp-for=@Model.Email class="small mb-1" for="inputEmailAddress">E-mail:</label>
+            <input style="font-size:16px;" asp-for=@Model.Email  id="inputEmailAddress" type="email">
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label style="font-size:16px;" asp-for=@Model.AppUser.Email class="small mb-1" for="inputEmailAddress">Confirm E-mail:</label>
+            <input style="font-size:16px;" asp-for=@Model.AppUser.Email  id="inputEmailAddress" type="email">
+            <span style="font-size:16px;" asp-validation-for="Email" class="text-danger"></span>
+        </div>
+
+
+        <div class="form-outline flex-fill mb-0">
+                    <label style="font-size:16px;" class="form-label" for="form3Example1c" asp-for="@Model.userPassword">Password:</label>
+
+                    <input style="font-size:16px;" asp-for="@Model.userPassword" id="form3Example1c" type="password" />
+            <span asp-validation-for="userPassword" class="text-danger"></span>
+
+        </div>
+
+                <div class="mb-3">
+                    <label style="font-size:16px;"  class="small mb-1" for="inputUsername">Company:</label>
+                    <input style="background-color:lightgrey;" style="font-size:16px;" readonly id="inputUsername" type="text" value="@companyName.ToString()">
+                </div>
+
+        <div class="mb-3">
+            <label hidden style="font-size:16px;" asp-for=@Model.CompanyID class="small mb-1" for="inputUsername">CompanyID:</label>
+            <input hidden style="background-color:lightgrey;" style="font-size:16px;" readonly asp-for=@Model.CompanyID id="inputUsername" type="text" value="@companyId" >
+        </div>
+
+        <div class="mb-3">
+            <label style="font-size:16px;" asp-for=@Model.CitizenId class="small mb-1" for="inputUsername">CitizenID:</label>
+            <input style="font-size:16px;" asp-for=@Model.CitizenId id="inputUsername" type="text">
+            <span  asp-validation-for="CitizenId" class="text-danger"></span>
+
+        </div>
+
+        <!-- Form Group (username)-->
+
+        <div class="mb-3">
+            <label style="font-size:16px;" asp-for=@Model.Name class="small mb-1" for="inputUsername">First Name:</label>
+            <input style="font-size:16px;" asp-for=@Model.Name id="inputUsername" type="text">
+            <span asp-validation-for="Name" class="text-danger"></span>
+
+        </div>
+
+        <div class="mb-3">
+            <label style="font-size:16px;" asp-for=@Model.SecondName class="small mb-1" for="inputUsername">Second Name:</label>
+            <input style="font-size:16px;" asp-for=@Model.SecondName  id="inputUsername" type="text">
+        </div>
+
+        <div class="mb-3">
+            <label style="font-size:16px;" asp-for=@Model.LastName class="small mb-1" for="inputUsername">Last Name:</label>
+            <input style="font-size:16px;" asp-for=@Model.LastName  id="inputUsername" type="text">
+            <span asp-validation-for="LastName" class="text-danger"></span>
+
+        </div>
+
+        <div class="mb-3">
+            <label style="font-size:16px;" asp-for=@Model.SecondLastName class="small mb-1" for="inputUsername">Second Last Name:</label>
+            <input style="font-size:16px;" asp-for=@Model.SecondLastName  id="inputUsername" type="text">
+        </div>
+
+        <div class="mb-3">
+            <label style="font-size:16px;" asp-for=@Model.BirthDate class="small mb-1" for="inputUsername">Birth Date:</label>
+            <input style="font-size:16px;" asp-for=@Model.BirthDate  id="form4Example2" type="date">
+            <span asp-validation-for="BirthDate" class="text-danger"></span>
+
+        </div>
+
+        <div class="mb-3">
+            <label style="font-size:16px;" asp-for=@Model.BirhtPlace class="small mb-1" for="inputUsername">Birth Place:</label>
+            <input style="font-size:16px;" asp-for=@Model.BirhtPlace  id="inputUsername" type="text">
+            <span asp-validation-for="BirhtPlace" class="text-danger"></span>
+
+
+        </div>
+        <div class="mb-3">
+            <label style="font-size:16px;" asp-for=@Model.StartDate class="small mb-1" for="inputUsername">Start Date:</label>
+            <input style="font-size:16px;" asp-for=@Model.StartDate  id="form4Example2" type="date">
+            <span asp-validation-for="StartDate" class="text-danger"></span>
+
+        </div>
+
+        <div class="mb-3">
+            <label style="font-size:16px;" asp-for=@Model.Address class="small mb-1" for="inputLocation">Address:</label>
+            <input style="font-size:16px;" asp-for=@Model.Address id="inputLocation" type="text">
+            <span asp-validation-for="Address" class="text-danger"></span>
+
+        </div>
+
+        <div class="mb-3">
+            <label style="font-size:16px;" asp-for=@Model.PhoneNumber class="small mb-1" for="inputLocation">Phone Number:</label>
+            <input style="font-size:16px;" asp-for=@Model.PhoneNumber  id="inputLocation" type="text">
+            <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+
+        </div>
+
+        <div class="mb-3">
+            <label style="font-size:16px;" asp-for=@Model.Salary class="small mb-1" for="inputLocation">Salary:</label>
+            <input asp-for=@Model.Salary id="inputLocation" type="number">
+            
+            <span asp-validation-for="Salary" class="text-danger"></span>
+
+        </div>
+
+        <div class="mb-3">
+            <label style="font-size:16px;" class="form-label" for="form4Example2">Profession:</label>
+            <select style="font-size:16px;" style="height:max-content" asp-for="@Model.Profession" asp-items="@Html.GetEnumSelectList<Profession>()" >
+                <option value="">Choose profession..</option>
+            </select>
+            <span asp-validation-for="Profession" class="text-danger"></span>
+
+        </div>
+
+
+        <div class="mb-3">
+            <label style="font-size:16px;" class="form-label" for="form4Example2">Department:</label>
+            <select style="font-size:16px;" style="height:max-content" asp-for="@Model.Department" asp-items="@Html.GetEnumSelectList<Department>()" >
+                <option value="">Choose department..</option>
+            </select>
+            <span asp-validation-for="Department" class="text-danger"></span>
+
+        </div>
+
+        <!-- Save changes button-->
+        <button type="submit" style="font-size:16px;" class="btn btn-primary float-right">Create</button>
+
+        </div>
+        </div>
+
+    </form>
+
+</div>
+
+
+</html>
+
+

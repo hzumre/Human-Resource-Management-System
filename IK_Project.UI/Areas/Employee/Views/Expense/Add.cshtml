@@ -1,0 +1,244 @@
+﻿@using IK_Project.Domain.Enums;
+@using IK_Project.UI.Areas.Employee.Models.ExpenseVMs;
+
+@{
+    ViewData["Title"] = "Add";
+}
+@model ExpenseCreateVM
+<style>
+
+    /*body {
+        margin-top: 20px;
+        background-color: #f2f6fc;
+        color: #69707a;
+    }
+
+    .img-account-profile {
+        height: 10rem;
+    }
+
+    .rounded-circle {
+        border-radius: 50% !important;
+    }
+
+    .card {
+        box-shadow: 0 0.15rem 1.75rem 0 rgb(33 40 50 / 15%);
+    }
+
+        .card .card-header {
+            font-weight: 500;
+        }
+
+    .card-header:first-child {
+        border-radius: 0.35rem 0.35rem 0 0;
+    }
+
+    .card-header {
+        padding: 1rem 1.35rem;
+        margin-bottom: 0;
+        background-color: rgba(33, 40, 50, 0.03);
+        border-bottom: 1px solid rgba(33, 40, 50, 0.125);
+    }
+
+    .form-control, .dataTable-input {
+        display: block;
+        width: 100%;
+        padding: 0.875rem 1.125rem;
+        font-size: 0.875rem;
+        font-weight: 400;
+        line-height: 1;
+        color: #69707a;
+        background-color: #fff;
+        background-clip: padding-box;
+        border: 1px solid #c5ccd6;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        border-radius: 0.35rem;
+        transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    }
+
+    .nav-borders .nav-link.active {
+        color: #0061f2;
+        border-bottom-color: #0061f2;
+    }
+
+    .nav-borders .nav-link {
+        color: #69707a;
+        border-bottom-width: 0.125rem;
+        border-bottom-style: solid;
+        border-bottom-color: transparent;
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
+        padding-left: 0;
+        padding-right: 0;
+        margin-left: 1rem;
+        margin-right: 1rem;
+    }*/
+        .alert {
+        padding: 20px;
+        background-color: #f44336;
+        color: white;
+    }
+
+    .closebtn {
+        margin-left: 15px;
+        color: white;
+        font-weight: bold;
+        float: right;
+        font-size: 22px;
+        line-height: 20px;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+        .closebtn:hover {
+            color: black;
+        }
+
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+
+    input[type=text], select, textarea {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        margin-top: 6px;
+        margin-bottom: 16px;
+        resize: vertical;
+    }
+
+    input[type=number], select, textarea {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        margin-top: 6px;
+        margin-bottom: 16px;
+        resize: vertical;
+    }
+
+    input[type=submit] {
+        background-color: #04AA6D;
+        color: white;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+        input[type=submit]:hover {
+            background-color: #45a049;
+        }
+
+    /*.container {
+            border-radius: 5px;
+            background-color: transparent;
+            padding: 10px;
+        }*/
+
+</style>
+<script>
+    window.setTimeout(function () {
+        $(".alert").fadeTo(500, 0).slideUp(500, function () {
+            $(this).remove();
+        });
+    }, 3000);
+</script>
+
+
+<div class="container-xl px-4 mt-4">
+
+    <form enctype="multipart/form-data" method="post" asp-action="Add" asp-area="Employee" asp-controller="Expense">
+
+        @if (TempData["SalaryError"] != null)
+        {
+            <div class="alert" id="alert" role="alert">
+                    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                    <strong>Warning!</strong>  @TempData["SalaryError"]
+                </div>
+        }
+
+
+        <div class="mb-3">
+            <div class="card mb-4 mb-xl-0">
+                <div class="card-header" style="font-size:20px">Expense File</div>
+                <div class="card-body text-center">
+
+                    <input type="hidden" asp-for="ExpenseFilePath" />
+                    <label hidden asp-for="ExpenseFilePath" class="control-label"></label>
+                    <input type="file" accept=".pdf, .jpg, .jpeg, .png" asp-for="ExpenseFilePath" class="form-control" />
+                    @*<span asp-validation-for="ExpenseFilePath" class="text-danger"></span>*@
+
+                </div>
+            </div>
+        </div>
+
+
+        <div class="card mb-4 mb-xl-0">
+            <div class="card-header" style="font-size:20px">Expense Details</div>
+            <div class="card-body">
+
+                <div class="mb-3">
+                    <label style="font-size:16px;" asp-for="ExpenseType" class="small mb-1">Expense Type:</label>
+                    <select style="height:max-content; font-size:16px;" asp-for="ExpenseType" asp-items="@Html.GetEnumSelectList<ExpenseType>()"></select>
+
+                </div>
+
+
+                <div class="mb-3">
+                    <label asp-for="Amount" style="font-size:16px;" class="small mb-1" for="form4Example1">Amount:</label>
+                    <input style="font-size:16px;" asp-for="Amount" type="number" max="1000000" id="form4Example1" />
+                    <span asp-validation-for="Amount" class="text-danger"></span>
+                </div>
+
+
+                <div class="mb-3">
+                    <label style="font-size:16px;"  for="form4Example1" asp-for="CurrencyUnit" class="small mb-1">Currency Unit:</label>
+                    <select style="font-size:16px;" style="height:max-content" asp-for="CurrencyUnit" asp-items="@Html.GetEnumSelectList<CurrecyUnit>()"></select>
+
+                </div>
+
+              <div class="mb-3">
+                    <label style="font-size:16px;" class="small mb-1" for="form4Example1">Created Date:</label>
+                    
+                    <input style="font-size:16px; background-color:lightgrey;" readonly asp-for=CreatedDate id="inputCompany" type="text" value="@DateTime.Now.ToShortDateString()">
+
+                </div>
+
+                <div class="mb-3">
+                    <label hidden class="small mb-1" for="form4Example1">EmployeeId:</label>
+                    <input hidden readonly asp-for="EmployeeId" id="form4Example1" class="form-control" />
+                </div>
+                <div class="mb-3">
+                    <label hidden class="small mb-1" for="form4Example1">AppUserId:</label>
+                    <input hidden readonly asp-for="AppUserId" id="form4Example1" class="form-control" />
+                </div>
+
+                <button type="submit" style="font-size:16px;" class="btn btn-primary float-right">Send Expense Demand</button>
+
+            </div>
+
+
+        </div>
+
+
+
+
+
+
+
+    </form>
+
+
+
+</div>
+

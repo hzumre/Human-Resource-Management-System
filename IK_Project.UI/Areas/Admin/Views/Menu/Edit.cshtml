@@ -1,0 +1,205 @@
+﻿@using IK_Project.Domain.Enums;
+@using IK_Project.UI.Areas.Admin.Models.ViewModels.MenuVMs;
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+@model MenuUpdateVM
+
+<html lang="en">
+<style>
+
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+
+    input[type=text], select, textarea {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        margin-top: 6px;
+        margin-bottom: 16px;
+        resize: vertical;
+    }
+
+    input[type=date], select, textarea {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        margin-top: 6px;
+        margin-bottom: 16px;
+        resize: vertical;
+    }
+
+    input[type=datetime], select, textarea {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        margin-top: 6px;
+        margin-bottom: 16px;
+        resize: vertical;
+    }
+
+    input[type=email], select, textarea {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        margin-top: 6px;
+        margin-bottom: 16px;
+        resize: vertical;
+    }
+
+    input[type=number], select, textarea {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        margin-top: 6px;
+        margin-bottom: 16px;
+        resize: vertical;
+    }
+
+    input[type=password], select, textarea {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        margin-top: 6px;
+        margin-bottom: 16px;
+        resize: vertical;
+    }
+
+    input[type=submit] {
+        background-color: #04AA6D;
+        color: white;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+        input[type=submit]:hover {
+            background-color: #45a049;
+        }
+
+
+</style>
+
+<div class="container-xl px-4 mt-4">
+
+
+    <!-- Account details card-->
+
+
+    <form enctype="multipart/form-data" method="post" asp-action="Edit" asp-area="Admin" asp-controller="Menu">
+
+
+        <div class="card mb-4 mb-xl-0">
+            <div class="card-header" style="font-size:18px;">Package Details</div>
+
+            <div class="card-body">
+
+                <div class="mb-3">
+                    <label style="font-size:16px;" asp-for=Id class="small mb-1" for="inputCompanyManager">ID:</label>
+                    <input style="background-color: lightgrey;" style="font-size:16px;" readonly asp-for=Id type="text" value="@Model.Id" id="form4Example1">
+                </div>
+
+                <div class="mb-3">
+                    <label style="font-size:16px;" asp-for=Name class="small mb-1" for="inputCompanyManager">Name:</label>
+                    <input style="font-size:16px;" asp-for=Name type="text" value="@Model.Name" id="form4Example1">
+                </div>
+
+
+                <div class="mb-3">
+                    <label style="font-size:16px;" asp-for=Period class="small mb-1" for="inputCompanyManager">Period:</label>
+                    <input style="font-size:16px;" asp-for=Period type="number" value="@Model.Period" id="form4Example1">
+                </div>
+
+                <div class="mb-3">
+                    <label style="font-size:16px;" asp-for=UnitPrice class="small mb-1" for="inputCompanyManager">Unit Price:</label>
+                    <input style="font-size:16px;" asp-for=UnitPrice type="text" value="@Model.UnitPrice" id="form4Example1">
+                </div>
+
+
+                <div class="mb-3">
+                    <label style="font-size:16px;" asp-for=ReleaseDate class="small mb-1" for="inputCompanyManager">Release Date:</label>
+                    <input style="background-color: lightgrey;" style="font-size:16px;" readonly asp-for=ReleaseDate type="datetime" value="@Model.ReleaseDate.Value.ToShortDateString()" id="form4Example1">
+                </div>
+
+
+                <div class="mb-3">
+                    <label hidden style="font-size:16px;" asp-for=DeletedDate class="small mb-1" for="inputCompanyManager">Deleted Date:</label>
+                    <input hidden style="font-size:16px;" asp-for=DeletedDate type="date" value="@Model.DeletedDate" id="form4Example1">
+                </div>
+
+
+                <div class="mb-3">
+                    <label style="font-size:16px;" asp-for=UserAmount class="small mb-1" for="inputCompanyManager">User Amount:</label>
+                    <input style="font-size:16px;" asp-for=UserAmount type="number" value="@Model.UserAmount" id="form4Example1">
+                </div>
+
+
+
+                <div class="mb-4">
+                    <label class="form-label" for="form4Example1">Currecy :</label>
+                    <select style="font-size:16px;" style="height:max-content" asp-for="Currecy" asp-items="@Html.GetEnumSelectList<CurrecyUnit>()" class="form-control">
+                        <option value="@Model.Currecy" disabled selected hidden>Choose Currecy...</option>
+                    </select>
+                </div>
+
+
+                <div class="mb-3">
+                    <label hidden asp-for=CreatedDate class="small mb-1" for="inputDateTime">CreatedDate:</label>
+                    <input hidden readonly asp-for=CreatedDate class="form-control" id="inputDateTime" type="text" value="@Model.CreatedDate">
+                </div>
+
+                <div class="mb-3">
+                    <label hidden class="form-label" for="inputCompany">ModifiedBy:</label>
+                    <input hidden readonly asp-for=@Model.ModifiedBy class="form-control" id="inputCompany" type="text" value="@Model.ModifiedBy">
+                </div>
+
+
+                <div class="mb-3">
+                    <label hidden class="form-label" for="inputCompany">CreatedBy:</label>
+                    <input hidden readonly asp-for=@Model.CreatedBy class="form-control" id="inputCompany" type="text" value="@Model.CreatedBy">
+                </div>
+
+                <div class="mb-3">
+                    <label hidden class="form-label" for="inputDateTime">ModifiedDate:</label>
+                    <input hidden readonly asp-for=@Model.ModifiedDate class="form-control" id="inputDateTime" type="text" value="@Model.ModifiedDate">
+                </div>
+
+                <div class="mb-3">
+                    <label hidden class="form-label" for="inputDateTime">Status:</label>
+                    <input hidden readonly asp-for=@Model.Status class="form-control" id="inputDateTime" type="text" value=@Model.Status>
+                </div>
+
+
+
+                <!-- Save changes button-->
+                <button type="submit" class="btn btn-primary float-right">Save Changes</button>
+            </div>
+        </div>
+
+    </form>
+
+</div>
+
+
+</html>
+

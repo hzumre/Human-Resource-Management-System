@@ -1,0 +1,191 @@
+﻿@using IK_Project.Domain.Enums;
+@using IK_Project.UI.Areas.Employee.Models.PermissionVMs;
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+
+@model PermissionUpdateVM
+
+
+
+<html lang="en">
+<style>
+
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+
+    input[type=text], select, textarea {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        margin-top: 6px;
+        margin-bottom: 16px;
+        resize: vertical;
+    }
+
+    input[type=number], select, textarea {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        margin-top: 6px;
+        margin-bottom: 16px;
+        resize: vertical;
+    }
+
+    input[type=submit] {
+        background-color: #04AA6D;
+        color: white;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+        input[type=submit]:hover {
+            background-color: #45a049;
+        }
+</style>
+
+<div class="container-xl px-4 mt-4">
+
+
+    <!-- Account details card-->
+
+
+    <form enctype="multipart/form-data" method="post" asp-action="Details" asp-area="CompanyManager" asp-controller="Permission">
+
+        @*  <div class="col-xl-4">*@
+        <!-- Profile picture card-->
+
+        <div class="mb-3">
+            <div class="card mb-4 mb-xl-0">
+                <div class="card-header" style="font-size:20px;">Permission File</div>
+
+                <div class="card-body text-center">
+                    @if (Model.PermissionFilePath != null)
+                    {
+                        <img src="~/permissionFiles/@Model.PermissionFilePath" />
+                    }
+                    <input type="text" hidden readonly asp-for="PermissionFilePath" value="@Model.PermissionFilePath" />
+
+                    @*<input lang="en" type="file" asp-for="PermissionFilePath" class="form-control" />*@
+
+                    <span asp-validation-for="PermissionFilePath" class="text-danger"></span>
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="card mb-4 mb-xl-0">
+            <div class="card-header" style="font-size:20px;">Permission Details</div>
+            <div class="card-body">
+
+                <div class="mb-3">
+                    <input hidden readonly asp-for=EmployeeId class="form-control" id="inputCompany" type="text" value="@Model.EmployeeId">
+                </div>
+
+                <div class="mb-3">
+                    <label hidden asp-for=Id class="small mb-1" for="inputCompany">ID:</label>
+                    <input hidden readonly asp-for=Id class="form-control" id="inputCompany" type="text" value="@Model.Id">
+                </div>
+
+                <div class="mb-3">
+                    <label style="font-size:16px;" asp-for=PermissionType class="small mb-1" for="inputCompany">Permission Type:</label>
+                    <input style="font-size:16px; background-color:lightgrey;" readonly asp-for=PermissionType id="inputCompany" type="text" value="@Model.PermissionType ">
+                </div>
+
+                <div class="mb-3">
+                    <label style="font-size:16px;" class="small mb-1" for="startdate">Start Date:</label>
+                    <input style="font-size:16px; background-color:lightgrey;" readonly type="text" value="@Model.StartDate.ToShortDateString()" asp-for="StartDate" id="StartDate"/>
+                </div>
+                <div class="mb-3">
+                    <label style="font-size:16px;" class="small mb-1" for="enddate">End Date:</label>
+                    <input style="font-size:16px; background-color:lightgrey;" readonly type="text" value="@Model.EndDate.ToShortDateString()" asp-for="EndDate" id="EndDate" />
+                </div>
+
+                <div class="mb-3">
+                    <label style="font-size:16px;" asp-for=NumberOfDays class="small mb-1" for="inputCompany">NumberOfDays:</label>
+                    <input style="font-size:16px; background-color:lightgrey;" readonly asp-for=NumberOfDays id="inputCompany" type="text" value="@Model.NumberOfDays">
+                </div>
+
+                @* <div class="mb-3">
+                <label asp-for=CurrencyUnit class="small mb-1" for="inputCompany">Currency Unit:</label>
+                <input readonly asp-for=CurrencyUnit class="form-control" id="inputCompany" type="text" value="@Model.CurrencyUnit">
+                </div>
+
+                *@
+                <div class="mb-3">
+                    <label style="font-size:16px;" asp-for=DateOfReply class="small mb-1" for="inputCompany">Date Of Reply:</label>
+                    <input style="font-size:16px; background-color:lightgrey;" readonly asp-for=DateOfReply id="inputCompany" type="text" value="@DateTime.Now.ToShortDateString()">
+                </div>
+
+                <div class="mb-3">
+                    <label style="font-size:16px;" class="small mb-1" for="form4Example1">Confirmation Status:</label>
+                    <select style="font-size:16px;" style="height:max-content" asp-for="ConfirmationStatus" asp-items="@Html.GetEnumSelectList<ConfirmationStatus>()" >
+                        <option value="" disabled selected hidden>Choose Confirmation Status ...</option>
+                    </select>
+                </div>
+
+                <div style="font-size:16px;" class="mb-3">
+                    <label asp-for=ReasonOfRejection class="small mb-1" for="inputCompany">Reason Of Rejection:</label>
+                    <input style="font-size:16px;" asp-for=ReasonOfRejection id="inputCompany" type="text" value="@Model.ReasonOfRejection">
+                </div>
+                <div class="mb-3">
+                    <label hidden class="small mb-1" for="form4Example1">EmployeeId:</label>
+                    <input readonly hidden asp-for="EmployeeId" id="form4Example1" class="form-control" />
+                </div>
+                <div class="mb-3">
+                    <label hidden class="small mb-1" for="form4Example1">AppUserId:</label>
+                    <input readonly hidden asp-for="AppUserId" id="form4Example1" class="form-control" />
+                </div>
+
+
+                <div class="mb-3">
+                    <label hidden asp-for=CreatedDate class="small mb-1" for="inputDateTime">CreatedDate:</label>
+                    <input hidden readonly asp-for=CreatedDate class="form-control" id="inputDateTime" type="text" value="@Model.CreatedDate">
+                </div>
+
+                <div class="mb-3">
+                    <label hidden class="form-label" for="inputCompany">ModifiedBy:</label>
+                    <input hidden readonly asp-for=@Model.ModifiedBy class="form-control" id="inputCompany" type="text" value="@Model.ModifiedBy">
+                </div>
+
+
+                <div class="mb-3">
+                    <label hidden class="form-label" for="inputCompany">CreatedBy:</label>
+                    <input hidden readonly asp-for=@Model.CreatedBy class="form-control" id="inputCompany" type="text" value="@Model.CreatedBy">
+                </div>
+
+                <div class="mb-3">
+                    <label hidden class="form-label" for="inputDateTime">ModifiedDate:</label>
+                    <input hidden readonly asp-for=@Model.ModifiedDate class="form-control" id="inputDateTime" type="text" value="@Model.ModifiedDate">
+                </div>
+
+                <div class="mb-3">
+                    <label hidden class="form-label" for="inputDateTime">Status:</label>
+                    <input hidden readonly asp-for=@Model.Status class="form-control" id="inputDateTime" type="text" value=@Model.Status>
+                </div>
+                <!-- Save changes button-->
+                <button type="submit" class="btn btn-primary float-right">Save My Decision</button>
+            </div>
+        </div>
+
+    </form>
+
+</div>
+
+
+</html>
+

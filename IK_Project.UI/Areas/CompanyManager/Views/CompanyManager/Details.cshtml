@@ -1,0 +1,287 @@
+﻿
+@{
+    ViewData["Title"] = "Details";
+}
+
+@model CompanyManagerEditVM
+
+
+@{
+    string companyName = TempData["companyName"] as string;
+}
+
+<html lang="en">
+<style>
+
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+
+    input[type=text], select, textarea {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        margin-top: 6px;
+        margin-bottom: 16px;
+        resize: vertical;
+    }
+
+    input[type=date], select, textarea {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        margin-top: 6px;
+        margin-bottom: 16px;
+        resize: vertical;
+    }
+
+    input[type=email], select, textarea {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        margin-top: 6px;
+        margin-bottom: 16px;
+        resize: vertical;
+    }
+
+    input[type=number], select, textarea {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        margin-top: 6px;
+        margin-bottom: 16px;
+        resize: vertical;
+    }
+
+    input[type=password], select, textarea {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        margin-top: 6px;
+        margin-bottom: 16px;
+        resize: vertical;
+    }
+
+    input[type=submit] {
+        background-color: #04AA6D;
+        color: white;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+        input[type=submit]:hover {
+            background-color: #45a049;
+        }
+
+
+</style>
+
+<div class="container-xl px-4 mt-4">
+
+
+    <!-- Account details card-->
+
+
+    <form enctype="multipart/form-data" method="post" asp-action="Details"  asp-controller="CompanyManager">
+
+        @*  <div class="col-xl-4">*@
+        <!-- Profile picture card-->
+
+        <div class="mb-3">
+            <div class="card mb-4 mb-xl-0">
+                <div class="card-header" style="font-size:20px;"> Profile Picture</div>
+
+                <div class="card-body text-center">
+                    @if (Model.ProfilePhoto != null)
+                    {
+                        <img src="~/images/@Model.ProfilePhoto" />
+                    }
+
+                    <input type="text" hidden readonly asp-for="ProfilePhoto" value="@Model.ProfilePhoto" />
+
+                    <input lang="en" type="file" asp-for="ProfilePhoto" class="form-control" />
+
+
+
+                </div>
+            </div>
+            @*  </div>*@
+
+
+        </div>
+
+
+        <div class="card mb-4 mb-xl-0">
+            <div class="card-header" style="font-size:20px;">Details</div>
+
+            <div class="card-body">
+
+                <div class="mb-3">
+                    <label style="font-size:16px;" asp-for=Id class="small mb-1" for="inputCompanyManager">ID:</label>
+                    <input style="background-color: lightgrey;" style="font-size:16px;" readonly asp-for=Id type="text" value="@Model.Id" id="form4Example1">
+                </div>
+
+                <div class="mb-3">
+                    <label style="font-size:16px;" asp-for=Name class="small mb-1" >Name:</label>
+                    <input style="background-color: lightgrey;" style="font-size:16px;" readonly asp-for=Name id="inputCompanyManager" type="text" value="@Model.Name">
+                </div>
+
+
+                <div class="mb-3">
+                    <label style="font-size:16px;" asp-for=SecondName class="small mb-1">Second Name:</label>
+                    <input style="background-color: lightgrey;" style="font-size:16px;" readonly asp-for=SecondName id="inputCompanyManager" type="text" value="@Model.SecondName">
+                </div>
+
+                <div class="mb-3">
+                    <label style="font-size:16px;" asp-for=LastName class="small mb-1">Last Name: </label>
+                    <input style="background-color: lightgrey;" style="font-size:16px;" readonly asp-for=LastName id="inputCompanyManager" type="text" value="@Model.LastName ">
+                </div>
+
+
+
+                <div class="mb-3">
+                    <label style="font-size:16px;" asp-for=SecondLastName class="small mb-1">Second Last Name: </label>
+                    <input style="background-color: lightgrey;" style="font-size:16px;" readonly asp-for=SecondLastName id="inputCompanyManager" type="text" value="@Model.SecondLastName ">
+                </div>
+
+                <div class="mb-3">
+                    <label style="font-size:16px;" asp-for=@Model.BirthDate class="small mb-1" for="inputUsername">Birth Date:</label>
+                    <input style="background-color:lightgrey;" readonly style="font-size:16px;" asp-for=@Model.BirthDate id="form4Example2" type="date">
+                    <span asp-validation-for="BirthDate" class="text-danger"></span>
+
+                </div>
+
+               <div class="mb-3">
+                <label style="font-size:16px;" asp-for=BirhtPlace class="small mb-1">Birth Place: </label>
+                    <input style="background-color: lightgrey;" style="font-size:16px;" readonly asp-for=BirhtPlace id="inputCompanyManager" type="text" value="@Model.BirhtPlace ">
+            </div>
+
+                <div class="mb-3">
+                    <label style="font-size:16px;" asp-for=CitizenId class="small mb-1">Citizen ID: </label>
+                    <input style="background-color: lightgrey;" style="font-size:16px;" readonly asp-for=CitizenId id="inputCompanyManager" type="text" value="@Model.CitizenId ">
+                </div>
+
+                <div class="mb-3">
+                    <label style="font-size:16px;" asp-for=@Model.StartDate class="small mb-1" for="inputUsername">Start Date:</label>
+                    <input readonly style="background-color:lightgrey;" style="font-size:16px;" asp-for=@Model.StartDate id="form4Example2" type="date">
+
+
+                </div>
+
+                <div class="mb-3">
+                    <label style="font-size:16px;" asp-for=Profession class="small mb-1" for="inputCompanyManager">Profession:</label>
+                    <input style="background-color: lightgrey;" style="font-size:16px;" readonly asp-for=Profession id="inputCompanyManager" type="text" value="@Model.Profession">
+                </div>
+
+                <div class="mb-3">
+                    <label style="font-size:16px;" asp-for=Department class="small mb-1" for="inputCompanyManager">Department:</label>
+                    <input style="background-color: lightgrey;" style="font-size:16px;" readonly asp-for=Department id="inputCompanyManager" type="text" value="@Model.Department">
+                </div>
+
+
+                <div class="mb-3">
+                    <label style="font-size:16px;" class="small mb-1" for="form4Example1">Email:</label>
+                    <input style="background-color: lightgrey;" style="font-size:16px;" readonly asp-for="Email" id="form4Example1" type="email" />
+ 
+
+                </div>
+
+
+                <div class="mb-3">
+                    <label style="font-size:16px;" asp-for=@Model.Address class="small mb-1" for="inputLocation">Address:</label>
+                    <input style="font-size:16px;" asp-for=@Model.Address type="text" id="form4Example1">
+
+                </div>
+
+                <div class="mb-3">
+                    <label style="font-size:16px;" asp-for=@Model.PhoneNumber class="small mb-1" for="inputLocation">Phone Number:</label>
+                    <input style="font-size:16px;" asp-for=@Model.PhoneNumber id="inputLocation" type="text">
+
+                </div>
+
+
+                <div class="mb-3">
+                    <label style="font-size:16px;" class="small mb-1" for="inputUsername">Company:</label>
+                    <input style="background-color:lightgrey;" style="font-size:16px;" readonly id="inputUsername" type="text" value="@companyName.ToString()">
+                </div>
+
+              
+
+
+                <div class="mb-3">
+                    <label hidden style="font-size:16px;" class="small mb-1" for="form4Example1">Company ID:</label>
+                    <input hidden readonly style="background-color: lightgrey;" style="font-size:16px;" asp-for="CompanyID" id="form4Example1" type="text" />
+
+
+                </div>
+
+                <div class="mb-3">
+                    <label hidden asp-for=AppUserID class="small mb-1" for="inputUser">AppUserID:</label>
+                    <input hidden readonly asp-for=AppUserID class="form-control" id="inputDateTime" type="text" value="@Model.AppUserID">
+                </div>
+
+
+                <div class="mb-3">
+                    <label hidden asp-for=CreatedDate class="small mb-1" for="inputDateTime">CreatedDate:</label>
+                    <input hidden readonly asp-for=CreatedDate class="form-control" id="inputDateTime" type="text" value="@Model.CreatedDate">
+                </div>
+
+                <div class="mb-3">
+                    <label hidden class="form-label" for="inputCompany">ModifiedBy:</label>
+                    <input hidden readonly asp-for=@Model.ModifiedBy class="form-control" id="inputCompany" type="text" value="@Model.ModifiedBy">
+                </div>
+
+
+                <div class="mb-3">
+                    <label hidden class="form-label" for="inputCompany">CreatedBy:</label>
+                    <input hidden readonly asp-for=@Model.CreatedBy class="form-control" id="inputCompany" type="text" value="@Model.CreatedBy">
+                </div>
+
+                <div class="mb-3">
+                    <label hidden class="form-label" for="inputDateTime">ModifiedDate:</label>
+                    <input hidden readonly asp-for=@Model.ModifiedDate class="form-control" id="inputDateTime" type="text" value="@Model.ModifiedDate">
+                </div>
+
+                <div class="mb-3">
+                    <label hidden class="form-label" for="inputDateTime">Status:</label>
+                    <input hidden readonly asp-for=@Model.Status class="form-control" id="inputDateTime" type="text" value=@Model.Status>
+                </div>
+
+
+                @* <div class="mb-3">
+                <label class="form-label" for="form4Example1">Status :</label>
+                <select style="height:max-content" asp-for="Status" asp-items="@Html.GetEnumSelectList<Status>()" class="form-control">
+                <option disabled selected hidden>Choose Status...</option>
+                </select>
+                </div>*@
+
+                <!-- Save changes button-->
+                <button type="submit" class="btn btn-primary float-right">Save Changes</button>
+            </div>
+        </div>
+
+    </form>
+
+</div>
+
+
+</html>
+
+
+

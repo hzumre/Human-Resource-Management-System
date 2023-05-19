@@ -1,0 +1,110 @@
+﻿@using IK_Project.UI.Areas.CompanyManager.Models;
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<style>
+    .container3 {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content:space-between;
+        background-color: white;
+        /*        height: 250px;
+            */ gap: 10px;
+    }
+
+    .alert {
+        padding: 20px;
+        
+        color: white;
+    }
+
+    .closebtn {
+        margin-left: 15px;
+        color: white;
+        font-weight: bold;
+        float: right;
+        font-size: 22px;
+        line-height: 20px;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+        .closebtn:hover {
+            color: black;
+        }
+</style>
+
+@model NotificationVM
+
+<div class="container3">
+
+    @await Component.InvokeAsync("CompanyManager")
+
+</div>
+
+<div class="container d-xl-block">
+
+    @if(Model.Advances.Count()>0)
+    {
+
+
+        <div class="alert" style="background-color:darkcyan">
+            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+            <strong>Demand Notification!</strong> <a style="color:lightblue" asp-action="CheckAdvanceDemands" asp-controller="Advance">Please click here and check Advance Demands</a>
+        </div>
+
+    }
+    @if (Model.Expenses.Count() > 0)
+    {
+
+
+        <div class="alert" style="background-color: steelblue">
+            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+            <strong>Demand Notification!</strong>  <a style="color:lightblue" asp-action="CheckExpenseDemands" asp-controller="Expense">Please click here and check Expense Demands</a>
+        </div>
+
+    }
+    @if (Model.Permissions.Count() > 0)
+    {
+        <div class="alert" style="background-color:midnightblue">
+            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+            <strong>Demand Notification!</strong>  <a style="color:lightblue" asp-action="CheckPermissionDemands" asp-controller="Permission">Please click here and check Permission Demands</a>
+        </div>
+    }
+
+</div>
+
+<div class="container3">
+
+
+  
+    <div class="card" style="width: 34rem;">
+        <img src="~/images/work2.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title">Company Manager transactions</h5>
+            <p class="card-body">Adding, deleting, updating and listing Company Managers are done in this section. </p>
+        </div>
+        <div class="card-footer">
+            <a class="btn btn-block btn-success" style="color:azure; font-size:larger" asp-action="Index" asp-area="CompanyManager" asp-controller="CompanyManager">Click</a>
+        </div>
+    </div>
+
+    <div class="card" style="width: 34rem;">
+        <img src="~/images/work3.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title">Employee transactions</h5>
+            <p class="card-body">Adding, deleting, updating and listing employees are done in this section. </p>
+        </div>
+
+        <div class="card-footer">
+            <a class="btn btn-block btn-success" style="color:azure; font-size:larger" asp-action="Index" asp-area="CompanyManager" asp-controller="Employee">Click</a>
+        </div>
+    </div>
+
+   
+</div>
+
+

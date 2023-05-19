@@ -1,0 +1,27 @@
+﻿@using IK_Project.UI.Areas.Admin.Models.ViewModels.RoleVMs;
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+@model RoleEditVM
+
+<div class="row">
+    <div class="col-lg-6">
+        <form asp-action="Edit" asp-area="Admin" asp-controller="Role">
+
+            <input type="hidden" asp-for="Id" />
+            <input type="hidden" asp-for="Status" />
+  <!-- Name input -->
+  <div class="form-outline mb-4">
+                <label class="form-label" for="form4Example1">Name</label>
+                <input asp-for="Name" id="form4Example1" class="form-control" />
+  </div>
+
+
+  <!-- Submit button -->
+  <input type="submit" class="btn btn-primary btn-block mb-4" value="Save"/>
+</form>
+    </div>
+</div>
+
