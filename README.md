@@ -1,5 +1,5 @@
 # Human-Resource-Management-System
-Human Resources Panel is a web project developed in Onion architecture using Asp.Net technology and MVC Framework. The Human Resources Panel is a web project developed using Asp.Net technology and MVC Framework in an Onion architecture. It has been coded using Entity Framework Core with the Code-first approach. MSSQL is used as the database.
+The Human Resources Panel is a web project developed using Asp.Net technology and MVC Framework in an Onion architecture. It has been coded using Entity Framework Core with the Code-first approach. MSSQL is used as the database.
 In this project, design has been implemented for three different users: Admin, Company Manager, and Employee.The necessary coding has been implemented for each user to perform CRUD (Create, Read, Update, Delete) operations.
 # Project-Pictures
 ![2](https://github.com/hzumre/Human-Resource-Management-System/assets/120679474/ec94303a-c173-4ba4-8087-59e0e4154e79)
